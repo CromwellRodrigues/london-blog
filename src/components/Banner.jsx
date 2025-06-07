@@ -25,7 +25,7 @@ export default async function Banner() {
     const data = await getBannerData();
 
     return (
-        <div className="relative w-full h-[80vh] overflow-hidden pt-[7vh md:pt-[0vh] ">
+        <div className="relative w-full h-[80vh] overflow-hidden pt-[7vh md:pt-0 ">
             <Image src={urlFor(data.image).url()}
                 alt={data.current_slug}
                 // width={1920}
