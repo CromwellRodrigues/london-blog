@@ -33,7 +33,7 @@ export default async function Banner() {
                 fill
                 sizes = '100vw'
                 style={{
-                    objectFit: "contain",
+                    objectFit: "object-cover md:object-contain object-center",
                     objectPosition: "center bottom",
                  }}
                 // className="w-full h-[70vh] object-cover"
