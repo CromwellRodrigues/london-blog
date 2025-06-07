@@ -17,7 +17,7 @@ export default function SearchBar({ onSearch }) {
                 value={query}
                 onChange={handleInputChange}
                 placeholder="Search by title or author ..."
-                className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                className="w-full px-4 py-2 border rounded-lg shadow-sm  text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
             />
 
         </div>

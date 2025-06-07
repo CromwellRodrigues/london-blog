@@ -129,7 +129,7 @@ export default function HeroBlogData({ data, isUserAuthenticated }) {
 
 
             {/* category selection */}
-            <div className="flex justify-center space-x-4 my-4 p-7 items-center">
+            <div className="flex overflow-x-auto  space-x-4 my-4 p-4 md:p-7 scrollbar-hide w-full items-center">
                 
                 <button
                     className={` btn  py-2 ${selectedCategory === ""  ? 'bg-blue-500 text-white py-3 px-6 rounded-full shadow-md ' : ''} hover:text-white-600 dark:hover:text-blue-400 capitalize`}
