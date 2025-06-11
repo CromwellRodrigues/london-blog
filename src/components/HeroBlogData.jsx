@@ -10,7 +10,8 @@ import {
     PaginationItem,
     PaginationLink,
     PaginationNext,
-    PaginationPrevious
+    PaginationPrevious,
+    PaginationEllipsis
 } from '@/components/ui/pagination'
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { SavedItemsContext } from '@/context/SavedItems';
@@ -90,23 +91,78 @@ export default function HeroBlogData({ data, isUserAuthenticated }) {
     const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
 
 
+    // const generatePaginationItems = () => {
+    //     const items = [];
+    //     for (let i = 1; i <= totalPages; i++) {
+    //         items.push(
+    //             <PaginationItem key={i} className="cursor-pointer">
+    //                 <PaginationLink
+    //                     href="#"
+    //                     onClick={(e) => handlePageChange(i, e)}
+    //                     className={currentPage === i ? 'bg-red-600 font-bold text-primary-foreground' : ''}
+    //                 >
+    //                     {i}
+    //                 </PaginationLink>
+    //             </PaginationItem>
+    //         );
+    //     }
+    //     return items;
+    // }
+
     const generatePaginationItems = () => {
         const items = [];
-        for (let i = 1; i <= totalPages; i++) {
+        const pageNumbers = [];
+        const totalNumbers = 5; // 2 previous, current, 2 next
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, currentPage + 2);
+    
+        // Adjust if near the start
+        if (currentPage <= 3) {
+            startPage = 1;
+            endPage = Math.min(totalPages, totalNumbers);
+        }
+        // Adjust if near the end
+        if (currentPage >= totalPages - 2) {
+            endPage = totalPages;
+            startPage = Math.max(1, totalPages - totalNumbers + 1);
+        }
+    
+        // Add ellipsis at the start if needed
+        if (startPage > 1) {
+            items.push(
+                <PaginationItem key="start-ellipsis">
+                    <PaginationEllipsis />
+                </PaginationItem>
+            );
+        }
+    
+        // Add page numbers
+        for (let i = startPage; i <= endPage; i++) {
             items.push(
                 <PaginationItem key={i} className="cursor-pointer">
                     <PaginationLink
                         href="#"
                         onClick={(e) => handlePageChange(i, e)}
                         className={currentPage === i ? 'bg-red-600 font-bold text-primary-foreground' : ''}
+                        isActive={currentPage === i}
                     >
                         {i}
                     </PaginationLink>
                 </PaginationItem>
             );
         }
+    
+        // Add ellipsis at the end if needed
+        if (endPage < totalPages) {
+            items.push(
+                <PaginationItem key="end-ellipsis">
+                    <PaginationEllipsis />
+                </PaginationItem>
+            );
+        }
+    
         return items;
-    }
+    };
 
 
     const incrementView = async (postId) => {

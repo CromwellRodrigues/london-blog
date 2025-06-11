@@ -22,6 +22,7 @@ import Image from 'next/image';
 export default function SavedBlogs({ isUserAuthenticated }) {
 
     const { savedItems, toggleSaveItem } = useContext(SavedItemsContext);
+    console.log("SavedItems:", savedItems);
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
